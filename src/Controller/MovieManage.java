@@ -6,7 +6,6 @@ package Controller;
 import Model.Movie;
 import Model.MovieCollection;
 import Validation.Validation;
-import java.awt.HeadlessException;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -27,7 +26,7 @@ public class MovieManage
     {
         try
         {
-            Validation.validateMovie(title, year, rating, duration);
+            Validation.validateMovie(title, genre, year, rating, duration);
 
             Movie movie = new Movie(movieCounter++,
                     title,
@@ -85,7 +84,7 @@ public class MovieManage
     {
         try
         {
-            Validation.validateMovie(title, year, rating, duration);
+            Validation.validateMovie(title, genre, year, rating, duration);
 
             Movie updatedMovie = new Movie(id,title, genre, Integer.parseInt(year), Double.parseDouble(rating), Integer.parseInt(duration));
 
