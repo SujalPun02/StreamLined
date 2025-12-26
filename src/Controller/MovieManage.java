@@ -35,22 +35,31 @@ public class MovieManage
                     Integer.parseInt(year),
                     Double.parseDouble(rating),
                     Integer.parseInt(duration));
+            collection.addMovie(movie);
+            JOptionPane.showMessageDialog(
+                null,
+                "Movie added successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE
+        );
 
-            if (!collection.addMovie(movie))
-            {
-                JOptionPane.showMessageDialog(null,
-                        "Movie with this title already exists",
-                        "Duplicate Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            JOptionPane.showMessageDialog(null, "Movie added successfully!");
+        } 
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(
+                null,
+                "Year, rating and duration must be numeric values",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
 
         }
-        catch (HeadlessException | NumberFormatException e) 
+        catch (IllegalArgumentException e)
         {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(
+                null,
+                e.getMessage(),
+                "Validation Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
     public void loadMoviesToTable(JTable table)
@@ -89,8 +98,20 @@ public class MovieManage
                     JOptionPane.showMessageDialog(null, "Movie not found");
                 }
         }
-        catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null,
+                "Year, rating and duration must be numeric values",
+                "Input Error",
+                JOptionPane.ERROR_MESSAGE);
+
+        } 
+        catch (IllegalArgumentException e)
+        {
+            JOptionPane.showMessageDialog(null,
+                e.getMessage(),
+                "Validation Error",
+                JOptionPane.ERROR_MESSAGE);
         }
     }
 
