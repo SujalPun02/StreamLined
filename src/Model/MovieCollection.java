@@ -46,7 +46,34 @@ public class MovieCollection
     }
 
     // DELETE
-    public boolean deleteMovie(int id) {
+    public boolean deleteMovie(int id)
+    {
         return movies.removeIf(m -> m.getMovieId() == id);
+    }
+    public LinkedList<Movie> searchMovies(String keyword)
+    {
+        LinkedList<Movie> result = new LinkedList<>();
+
+        for (Movie m : movies)
+        {
+            if (m.getTitle().toLowerCase().contains(keyword.toLowerCase()) || m.getGenre().toLowerCase().contains(keyword.toLowerCase()))
+            {
+                result.add(m);
+            }
+        }
+            return result;
+    }
+    public int getTotalMovies()
+    {
+        return movies.size();
+    }
+
+    public Movie getLastAddedMovie()
+    {
+        if (movies.isEmpty())
+        {
+            return null;
+        }
+        return movies.getLast();
     }
 }

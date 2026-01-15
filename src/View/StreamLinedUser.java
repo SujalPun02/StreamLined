@@ -12,19 +12,17 @@ import javax.swing.JOptionPane;
  *
  * @author sujalpun
  */
-public class StreamLined extends javax.swing.JFrame
+public class StreamLinedUser extends javax.swing.JFrame
 {
     private MovieManage controller;
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StreamLined.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(StreamLinedUser.class.getName());
 
     Authenticator auth = new Authenticator();
-    public StreamLined()
+    public StreamLinedUser()
     {
         initComponents();
         controller = new MovieManage();
         controller.loadMoviesToTable(movieTable);
-        controller.loadMoviesToTable(movieTable1);
-        controller.updateDashboardStats(txtTotalMovies, txtRecentMovie);
     }
     private void updateSelectedMovie()
     {
@@ -34,6 +32,7 @@ public class StreamLined extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Select a movie first");
             return;
         }
+
         int id = (int) movieTable.getValueAt(row, 0);
 
         controller.updateMovie(
@@ -47,6 +46,7 @@ public class StreamLined extends javax.swing.JFrame
 
         controller.loadMoviesToTable(movieTable);
     }
+    
     private void deleteSelectedMovie()
     {
         int row = movieTable.getSelectedRow();
@@ -55,12 +55,13 @@ public class StreamLined extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Select a movie first");
             return;
         }
-        int id = (int) movieTable.getValueAt(row, 0);
-        controller.deleteMovie(id);
-        controller.loadMoviesToTable(movieTable);
-    }
-    
-    private void btnRegisterActionPerformed()
+
+            int id = (int) movieTable.getValueAt(row, 0);
+            controller.deleteMovie(id);
+            controller.loadMoviesToTable(movieTable);
+        }
+        
+     private void btnRegister()
     {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -70,7 +71,7 @@ public class StreamLined extends javax.swing.JFrame
         txtPassword.setText("");
     }
 
-    private void btnLoginActionPerformed()
+    private void btnLogin()
     {
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -79,16 +80,14 @@ public class StreamLined extends javax.swing.JFrame
 
         if (user != null)
         {
-            if (user.getRole().equals("admin"))
-            {
-                new StreamLined().setVisible(true);
-            }
-            else
+            if (user.getRole().equals("admin")) {
+                new StreamLinedUser().setVisible(true);
+            } else
             {
                 new StreamLinedUser().setVisible(true); // view-only UI
             }
             this.dispose();
-        }  
+        }
     }
     private void btnSearchActionPerformed()
     {
@@ -130,15 +129,6 @@ public class StreamLined extends javax.swing.JFrame
         movieTable = new javax.swing.JTable();
         txtSearch = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtTotalMovies = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtRecentMovie = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        movieTable1 = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -309,7 +299,7 @@ public class StreamLined extends javax.swing.JFrame
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton8))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("Home", jPanel17);
@@ -374,101 +364,6 @@ public class StreamLined extends javax.swing.JFrame
         );
 
         jTabbedPane8.addTab("View Movies", jPanel5);
-
-        jPanel19.setBackground(new java.awt.Color(0, 0, 0));
-
-        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("Admin Panel");
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Total Movies:");
-
-        txtTotalMovies.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalMoviesActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Recently Added:");
-
-        txtRecentMovie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRecentMovieActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Movies in Each Genre");
-
-        movieTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Movie Title", "Genre", "Year"
-            }
-        ));
-        jScrollPane3.setViewportView(movieTable1);
-
-        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
-        jPanel19.setLayout(jPanel19Layout);
-        jPanel19Layout.setHorizontalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel19))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTotalMovies, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel19Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtRecentMovie))))
-                    .addGroup(jPanel19Layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel3)))
-                .addContainerGap(230, Short.MAX_VALUE))
-            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-        jPanel19Layout.setVerticalGroup(
-            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel19Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel19)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtTotalMovies, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtRecentMovie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addContainerGap(223, Short.MAX_VALUE))
-            .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel19Layout.createSequentialGroup()
-                    .addGap(175, 175, 175)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(66, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane8.addTab("Admin", jPanel19);
 
         jPanel6.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -589,7 +484,7 @@ public class StreamLined extends javax.swing.JFrame
                     .addComponent(jButton7)
                     .addComponent(jButton3)
                     .addComponent(jButton2))
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jTabbedPane8.addTab("Manage Movies", jPanel6);
@@ -602,7 +497,7 @@ public class StreamLined extends javax.swing.JFrame
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 391, Short.MAX_VALUE)
+            .addComponent(jTabbedPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 387, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -630,9 +525,17 @@ public class StreamLined extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+    private void textDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDurationActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchActionPerformed
+    }//GEN-LAST:event_textDurationActionPerformed
+
+    private void textTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTitleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTitleActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        updateSelectedMovie();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         deleteSelectedMovie();
@@ -640,28 +543,18 @@ public class StreamLined extends javax.swing.JFrame
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         controller.addMovie(
-                    textTitle.getText(),
-                    textGenre.getText(),
-                    textYear.getText(),
-                    textRating.getText(),
-                    textDuration.getText()
-            );
-            controller.loadMoviesToTable(movieTable);
-            
-            controller.updateDashboardStats(txtTotalMovies, txtRecentMovie);
+            textTitle.getText(),
+            textGenre.getText(),
+            textYear.getText(),
+            textRating.getText(),
+            textDuration.getText()
+        );
+        controller.loadMoviesToTable(movieTable);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void textDurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDurationActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textDurationActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        updateSelectedMovie();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void textTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textTitleActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -671,20 +564,12 @@ public class StreamLined extends javax.swing.JFrame
         btnSearchActionPerformed();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void txtTotalMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalMoviesActionPerformed
-        txtTotalMovies.setEditable(false);
-    }//GEN-LAST:event_txtTotalMoviesActionPerformed
-
-    private void txtRecentMovieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecentMovieActionPerformed
-        txtTotalMovies.setEditable(false);
-    }//GEN-LAST:event_txtRecentMovieActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        btnRegisterActionPerformed();
+        btnRegister();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        btnLoginActionPerformed();
+        btnLogin();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
@@ -709,7 +594,7 @@ public class StreamLined extends javax.swing.JFrame
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new StreamLined().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new StreamLinedUser().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -727,11 +612,7 @@ public class StreamLined extends javax.swing.JFrame
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -739,27 +620,22 @@ public class StreamLined extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTable movieTable;
-    private javax.swing.JTable movieTable1;
     private javax.swing.JTextField textDuration;
     private javax.swing.JTextField textGenre;
     private javax.swing.JTextField textRating;
     private javax.swing.JTextField textTitle;
     private javax.swing.JTextField textYear;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtRecentMovie;
     private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTotalMovies;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

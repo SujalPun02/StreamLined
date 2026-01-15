@@ -15,11 +15,14 @@ import javax.swing.table.DefaultTableModel;
 public class MovieManage
 {
     private MovieCollection collection = new MovieCollection();
-    private int movieCounter = 1;
+    private static int movieCounter = 1;
     public MovieManage() {
         // Sample data
         collection.addMovie(new Movie(1, "Inception", "Sci-Fi", 2010, 8.8, 148));
         collection.addMovie(new Movie(2, "The Godfather", "Drama", 1972, 9.2, 175));
+        collection.addMovie(new Movie(3, "Lucid Dreams", "Sci-Fi", 2007, 6.2, 101));
+        collection.addMovie(new Movie(4, "The Shawshank Redemption", "Drama", 1994, 9.3, 142));
+        collection.addMovie(new Movie(5, "Inception", "Adventure", 2010, 8.8, 148));
     }
 
     public void addMovie(String title, String genre, String year, String rating, String duration)
@@ -28,7 +31,8 @@ public class MovieManage
         {
             Validation.validateMovie(title, genre, year, rating, duration);
 
-            Movie movie = new Movie(movieCounter++,
+            Movie movie = new Movie(
+                    movieCounter++,
                     title,
                     genre,
                     Integer.parseInt(year),
@@ -134,4 +138,40 @@ public class MovieManage
             }
         }    
     }
+    public void updateDashboardStats(JTextField txtTotalMovies, JTextField txtRecentMovie)
+    {
+        int total = collection.getTotalMovies();
+        Movie last = collection.getLastAddedMovie();
+        txtTotalMovies.setText(String.valueOf(total));
+
+        if (last != null)
+        {
+            txtRecentMovie.setText(last.getTitle() + " (" + last.getReleaseYear() + ")");
+        }
+        else
+        {
+            txtRecentMovie.setText("N/A");
+        }
+    }
+
+    public void searchMovies(JTable table, String keyword)
+    {
+        String[] columns = {"ID", "Title", "Genre", "Year", "Rating", "Duration"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+        for (Movie m : collection.searchMovies(keyword))
+        {
+            model.addRow(new Object[]
+            {
+                m.getMovieId(),
+                m.getTitle(),
+                m.getGenre(),
+                m.getReleaseYear(),
+                m.getRating(),
+                m.getDuration()
+            });
+        }
+        table.setModel(model);
+    }
+
 }
