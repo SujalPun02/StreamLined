@@ -6,6 +6,7 @@ package Controller;
 import Model.Movie;
 import Model.MovieCollection;
 import Validation.Validation;
+import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -144,6 +145,35 @@ public class MovieManage
             }
         }    
     }
+    public void sortMoviesByYear(boolean ascending)
+    {
+        LinkedList<Movie> list = collection.getAllMovies();
+        int n = list.size();
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                Movie m1 = list.get(j);
+                Movie m2 = list.get(j + 1);
+                boolean condition;
+                if (ascending)
+                {
+                    condition = m1.getReleaseYear() > m2.getReleaseYear();
+                }
+                else
+                {
+                    condition = m1.getReleaseYear() < m2.getReleaseYear();
+                }
+
+                if (condition)
+                {
+                    list.set(j, m2);
+                    list.set(j + 1, m1);
+                }
+            }
+        }
+    }
+
     public void updateDashboardStats(JTextField txtTotalMovies, JTextField txtRecentMovie)
     {
         int total = collection.getTotalMovies();

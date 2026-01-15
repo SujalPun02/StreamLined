@@ -59,6 +59,11 @@ public class StreamLined extends javax.swing.JFrame
         controller.deleteMovie(id);
         controller.loadMoviesToTable(movieTable);
     }
+    private void btnBubbleSort()
+    {
+        controller.sortMoviesByYear(true);
+        controller.loadMoviesToTable(movieTable);
+    }
     
     private void btnRegisterActionPerformed()
     {
@@ -131,6 +136,7 @@ public class StreamLined extends javax.swing.JFrame
         txtSearch = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        sort = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -353,25 +359,38 @@ public class StreamLined extends javax.swing.JFrame
             }
         });
 
+        sort.setBackground(new java.awt.Color(255, 0, 0));
+        sort.setForeground(new java.awt.Color(255, 255, 255));
+        sort.setText("Sort By Year");
+        sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addGap(17, 17, 17)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton4))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(149, 149, 149)
+                                .addComponent(jButton5)
+                                .addGap(35, 35, 35)
+                                .addComponent(sort)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,7 +402,9 @@ public class StreamLined extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(sort))
                 .addGap(31, 31, 31))
         );
 
@@ -689,6 +710,10 @@ public class StreamLined extends javax.swing.JFrame
          deleteSelectedMovie();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
+        btnBubbleSort();
+    }//GEN-LAST:event_sortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -753,6 +778,7 @@ public class StreamLined extends javax.swing.JFrame
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTable movieTable;
     private javax.swing.JTable movieTable1;
+    private javax.swing.JButton sort;
     private javax.swing.JTextField textDuration;
     private javax.swing.JTextField textGenre;
     private javax.swing.JTextField textRating;

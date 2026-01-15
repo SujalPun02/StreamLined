@@ -60,6 +60,12 @@ public class StreamLinedUser extends javax.swing.JFrame
             controller.deleteMovie(id);
             controller.loadMoviesToTable(movieTable);
         }
+    
+    private void btnBubbleSort()
+    {
+        controller.sortMoviesByYear(true);
+        controller.loadMoviesToTable(movieTable);
+    }
         
      private void btnRegister()
     {
@@ -130,6 +136,7 @@ public class StreamLinedUser extends javax.swing.JFrame
         txtSearch = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        sort = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -343,6 +350,15 @@ public class StreamLinedUser extends javax.swing.JFrame
             }
         });
 
+        sort.setBackground(new java.awt.Color(255, 0, 0));
+        sort.setForeground(new java.awt.Color(255, 255, 255));
+        sort.setText("Sort By Year");
+        sort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -362,6 +378,8 @@ public class StreamLinedUser extends javax.swing.JFrame
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(173, 173, 173)
                 .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(sort)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -374,7 +392,9 @@ public class StreamLinedUser extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(sort))
                 .addGap(37, 37, 37))
         );
 
@@ -575,6 +595,10 @@ public class StreamLinedUser extends javax.swing.JFrame
         deleteSelectedMovie();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void sortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActionPerformed
+        btnBubbleSort();
+    }//GEN-LAST:event_sortActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -632,6 +656,7 @@ public class StreamLinedUser extends javax.swing.JFrame
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTable movieTable;
+    private javax.swing.JButton sort;
     private javax.swing.JTextField textDuration;
     private javax.swing.JTextField textGenre;
     private javax.swing.JTextField textRating;
