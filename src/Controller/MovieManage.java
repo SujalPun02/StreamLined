@@ -14,15 +14,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MovieManage
 {
-    private MovieCollection collection = new MovieCollection();
+    private static MovieCollection collection = new MovieCollection();
     private static int movieCounter = 1;
-    public MovieManage() {
+    public MovieManage()
+    {
         // Sample data
         collection.addMovie(new Movie(1, "Inception", "Sci-Fi", 2010, 8.8, 148));
         collection.addMovie(new Movie(2, "The Godfather", "Drama", 1972, 9.2, 175));
         collection.addMovie(new Movie(3, "Lucid Dreams", "Sci-Fi", 2007, 6.2, 101));
         collection.addMovie(new Movie(4, "The Shawshank Redemption", "Drama", 1994, 9.3, 142));
-        collection.addMovie(new Movie(5, "Inception", "Adventure", 2010, 8.8, 148));
+        collection.addMovie(new Movie(5, "Avatar", "Adventure", 2010, 8.8, 148));
+        
+    if (collection.getTotalMovies() > 0)
+    {
+        movieCounter = collection.getTotalMovies() + 1;
+    }
     }
 
     public void addMovie(String title, String genre, String year, String rating, String duration)
